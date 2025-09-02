@@ -11,11 +11,10 @@ while flying:
   get_API()
   with open('curl_snapshot.json') as f:
     d = json.load(f)
-  print(d)
-  position = calculate_drone_position(d)
+  position = calculate_drone_position(d["status"])
   x, y = position["x"], position["y"]
   print(x, y)
-  
+  target_loc = d["targets"]
   
   # get Data from api
 
@@ -41,7 +40,8 @@ while flying:
 
     return(direction, distance)
 
-direction, distance = calc_bearing(target_loc, current_position)
+direction, distance = calc_bearing(target_loc, position)
+print(direction, distance)
   # decide if we need to drop the bomb
 if direction < 1:
    # Drop the bomb!

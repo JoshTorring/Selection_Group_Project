@@ -350,7 +350,7 @@ def calculate_drone_position(drone_status):
                     "distance": 10 ** ((transmit_power - tower["rx_power"]) / 20),
                     "position": get_tower_pos(tower["tower_id"], towerData)
                 }
-    print(tower_data_formatted)
+    #print(tower_data_formatted)
 
     positions = [(v["position"]["x"], v["position"]["y"]) for v in tower_data_formatted.values()]
     distances = [v["distance"] for v in tower_data_formatted.values()]
@@ -382,7 +382,7 @@ def calculate_drone_position(drone_status):
         y -= lr * grad_y
 
     print(f"Estimated drone position: ({x}, {y})")
-    print(f"Final cost: {cost(x, y):.6f}")
+    #print(f"Final cost: {cost(x, y):.6f}")
 
     return {
         "x": x,
