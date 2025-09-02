@@ -3,27 +3,7 @@ import json
 from curl_tracker import get_API
 from position_calculation import calculate_drone_position
 
-# Main loop
-
-flying = True
-
-while flying:
-  get_API()
-  with open('curl_snapshot.json') as f:
-    d = json.load(f)
-  position = calculate_drone_position(d["status"])
-  x, y = position["x"], position["y"]
-  print(x, y)
-  target_loc = d["targets"]
-  
-  # get Data from api
-
-
-  # calculate drone position
-  
-
-  # calculate direction change needed
-  def calc_bearing(target_loc: dict, current_position: dict):
+def calc_bearing(target_loc: dict, current_position: dict):
     """
     Takes in dictionaries for target location and current position, both
     in { "x": x, "y": y} and returns floats of direction (in degrees) and distance.
@@ -39,10 +19,22 @@ while flying:
         direction += 360
 
     return(direction, distance)
+# Main loop
 
-direction, distance = calc_bearing(target_loc, position)
-print(direction, distance)
-  # decide if we need to drop the bomb
+flying = True
+
+while flying:
+  get_API()
+  with open('curl_snapshot.json') as f:
+    d = json.load(f)
+  position = calculate_drone_position(d["status"])
+  x, y = position["x"], position["y"]
+  print(x, y)
+  target_loc = d["targets"]
+  direction, distance = calc_bearing(target_loc, position)
+  print(f" direction, distance: {direction, distance}")
+  
+
 if direction < 1:
    # Drop the bomb!
    pass
