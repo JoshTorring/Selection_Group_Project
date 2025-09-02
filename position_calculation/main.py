@@ -29,21 +29,21 @@ while flying:
     with open('curl_snapshot.json') as f:
         d = json.load(f)
     position = calculate_drone_position(d["status"])
-    x, y = position["x"], position["y"]
-    print(x, y)
+    #x, y = position["x"], position["y"]
+    #print(x, y)
     target_loc = d["targets"]
     direction, distance = calc_bearing(target_loc, position)
     print(f" direction, distance: {direction, distance}")
 
     # Send command to drone using direction as heading
     drone_id = "drone-04"
-    heading = direction  # already 0–360 with 0 = north
+    direction  # already 0–360 with 0 = north
     # simple speed logic: slow down when close
     speed = 1.0 if distance > 10 else 0.1
 
     cmd_payload = {
         "id": drone_id,
-        "heading": heading,
+        "heading": direction,
         "speed": speed
     }
 
