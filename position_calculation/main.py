@@ -1,5 +1,5 @@
 import math
-from curl_tracker import write_snapshot, main
+from curl_tracker import main
 
 # Main loop
 
