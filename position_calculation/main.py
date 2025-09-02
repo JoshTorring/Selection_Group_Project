@@ -43,7 +43,7 @@ while flying:
 
     drone_id = "drone-04"
  
-    speed = 1.0 if distance > 10 else 0.1
+    speed = 1.0 if distance > 2 else 0.1
     cmd_payload = {
         "id": drone_id,
         "heading": direction,
@@ -63,3 +63,16 @@ while flying:
         print("Command response:", resp.status_code, resp.text)
     except Exception as e:
         print("Command error:", e)
+
+    # Trigger drop if within 1 unit distance
+    if distance <= 0.1:
+        try:
+            drop_url = f"https://selection-drone.charginglead.workers.dev/drop?drone_id={drone_id}"
+            drop_resp = requests.post(
+                drop_url,
+                headers={"Authorization": "Bearer sait-selection-2025"},
+                timeout=5
+            )
+            print("Drop response:", drop_resp.status_code, drop_resp.text)
+        except Exception as e:
+            print("Drop error:", e)
