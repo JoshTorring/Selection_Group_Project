@@ -1,0 +1,417 @@
+{
+  "ts": 1756824110.429116,
+  "towers": [
+    {
+      "id": "A",
+      "position": {
+        "x": 20,
+        "y": 80
+      },
+      "tx_power": 45
+    },
+    {
+      "id": "B",
+      "position": {
+        "x": 70,
+        "y": 30
+      },
+      "tx_power": 60
+    },
+    {
+      "id": "C",
+      "position": {
+        "x": 90,
+        "y": 90
+      },
+      "tx_power": 45
+    },
+    {
+      "id": "D",
+      "position": {
+        "x": 0,
+        "y": 120
+      },
+      "tx_power": 45
+    },
+    {
+      "id": "E",
+      "position": {
+        "x": 130,
+        "y": 110
+      },
+      "tx_power": 45
+    },
+    {
+      "id": "F",
+      "position": {
+        "x": 30,
+        "y": 40
+      },
+      "tx_power": 60
+    },
+    {
+      "id": "G",
+      "position": {
+        "x": 160,
+        "y": 80
+      },
+      "tx_power": 45
+    },
+    {
+      "id": "H",
+      "position": {
+        "x": -10,
+        "y": -20
+      },
+      "tx_power": 60
+    },
+    {
+      "id": "I",
+      "position": {
+        "x": -10,
+        "y": -20
+      },
+      "tx_power": 60
+    },
+    {
+      "id": "J",
+      "position": {
+        "x": -20,
+        "y": -30
+      },
+      "tx_power": 60
+    },
+    {
+      "id": "K",
+      "position": {
+        "x": 10,
+        "y": -20
+      },
+      "tx_power": 60
+    },
+    {
+      "id": "L",
+      "position": {
+        "x": 20,
+        "y": -10
+      },
+      "tx_power": 60
+    },
+    {
+      "id": "M",
+      "position": {
+        "x": 30,
+        "y": 0
+      },
+      "tx_power": 60
+    },
+    {
+      "id": "N",
+      "position": {
+        "x": 60,
+        "y": 60
+      },
+      "tx_power": 60
+    },
+    {
+      "id": "O",
+      "position": {
+        "x": 90,
+        "y": 30
+      },
+      "tx_power": 60
+    }
+  ],
+  "targets": {
+    "x": 96,
+    "y": 103
+  },
+  "status": [
+    {
+      "id": "drone-01",
+      "signals": [
+        {
+          "tower_id": "B",
+          "rx_power": 17.827018116360563
+        },
+        {
+          "tower_id": "D",
+          "rx_power": 21.352720450918156
+        },
+        {
+          "tower_id": "F",
+          "rx_power": 19.944216656892664
+        },
+        {
+          "tower_id": "H",
+          "rx_power": 16.21727118983449
+        },
+        {
+          "tower_id": "I",
+          "rx_power": 16.21727118983449
+        },
+        {
+          "tower_id": "J",
+          "rx_power": 15.640082414544175
+        },
+        {
+          "tower_id": "K",
+          "rx_power": 16.183411147106533
+        },
+        {
+          "tower_id": "L",
+          "rx_power": 16.678849740034664
+        },
+        {
+          "tower_id": "M",
+          "rx_power": 17.14716064509939
+        },
+        {
+          "tower_id": "N",
+          "rx_power": 20.118647351270866
+        },
+        {
+          "tower_id": "O",
+          "rx_power": 17.015845712752636
+        }
+      ]
+    },
+    {
+      "id": "drone-02",
+      "signals": [
+        {
+          "tower_id": "B",
+          "rx_power": 23.39406923785873
+        },
+        {
+          "tower_id": "C",
+          "rx_power": 22.56142151073368
+        },
+        {
+          "tower_id": "E",
+          "rx_power": 10.547963796708963
+        },
+        {
+          "tower_id": "F",
+          "rx_power": 22.486959914678174
+        },
+        {
+          "tower_id": "H",
+          "rx_power": 16.65656782699331
+        },
+        {
+          "tower_id": "I",
+          "rx_power": 16.65656782699331
+        },
+        {
+          "tower_id": "J",
+          "rx_power": 15.864946480062883
+        },
+        {
+          "tower_id": "K",
+          "rx_power": 17.341891334139213
+        },
+        {
+          "tower_id": "L",
+          "rx_power": 18.261042648878423
+        },
+        {
+          "tower_id": "M",
+          "rx_power": 19.278751387265658
+        },
+        {
+          "tower_id": "N",
+          "rx_power": 27.62302563692012
+        },
+        {
+          "tower_id": "O",
+          "rx_power": 23.349121177458308
+        }
+      ]
+    },
+    {
+      "id": "drone-03",
+      "signals": [
+        {
+          "tower_id": "B",
+          "rx_power": 25.373574592605934
+        },
+        {
+          "tower_id": "C",
+          "rx_power": 21.777342171224994
+        },
+        {
+          "tower_id": "F",
+          "rx_power": 23.870404404279967
+        },
+        {
+          "tower_id": "H",
+          "rx_power": 17.380891023009255
+        },
+        {
+          "tower_id": "I",
+          "rx_power": 17.380891023009255
+        },
+        {
+          "tower_id": "J",
+          "rx_power": 16.519448591273438
+        },
+        {
+          "tower_id": "K",
+          "rx_power": 18.183487445372478
+        },
+        {
+          "tower_id": "L",
+          "rx_power": 19.214220871281412
+        },
+        {
+          "tower_id": "M",
+          "rx_power": 20.374691133498544
+        },
+        {
+          "tower_id": "N",
+          "rx_power": 30.758190304710613
+        },
+        {
+          "tower_id": "O",
+          "rx_power": 25.203309213615526
+        }
+      ]
+    },
+    {
+      "id": "drone-04",
+      "signals": [
+        {
+          "tower_id": "B",
+          "rx_power": 24.97505725919985
+        },
+        {
+          "tower_id": "F",
+          "rx_power": 20.487285464826556
+        },
+        {
+          "tower_id": "H",
+          "rx_power": 18.301836139040333
+        },
+        {
+          "tower_id": "I",
+          "rx_power": 18.301836139040333
+        },
+        {
+          "tower_id": "J",
+          "rx_power": 17.536750739528166
+        },
+        {
+          "tower_id": "K",
+          "rx_power": 19.853817820118337
+        },
+        {
+          "tower_id": "L",
+          "rx_power": 20.812249918346183
+        },
+        {
+          "tower_id": "M",
+          "rx_power": 21.77433559701398
+        },
+        {
+          "tower_id": "N",
+          "rx_power": 21.354204139649582
+        },
+        {
+          "tower_id": "O",
+          "rx_power": 27.12649386067126
+        }
+      ]
+    },
+    {
+      "id": "drone-05",
+      "signals": [
+        {
+          "tower_id": "B",
+          "rx_power": 23.51503194585669
+        },
+        {
+          "tower_id": "F",
+          "rx_power": 19.93097420610863
+        },
+        {
+          "tower_id": "H",
+          "rx_power": 18.69281917121741
+        },
+        {
+          "tower_id": "I",
+          "rx_power": 18.69281917121741
+        },
+        {
+          "tower_id": "J",
+          "rx_power": 17.982996208236344
+        },
+        {
+          "tower_id": "K",
+          "rx_power": 20.329780110125668
+        },
+        {
+          "tower_id": "L",
+          "rx_power": 21.152265606762604
+        },
+        {
+          "tower_id": "M",
+          "rx_power": 21.890649713072598
+        },
+        {
+          "tower_id": "N",
+          "rx_power": 20.20437693158277
+        },
+        {
+          "tower_id": "O",
+          "rx_power": 24.674726675972785
+        }
+      ]
+    },
+    {
+      "id": "drone-06",
+      "signals": [
+        {
+          "tower_id": "B",
+          "rx_power": 22.60158138547267
+        },
+        {
+          "tower_id": "F",
+          "rx_power": 26.69919367381037
+        },
+        {
+          "tower_id": "H",
+          "rx_power": 31.50843977440859
+        },
+        {
+          "tower_id": "I",
+          "rx_power": 31.50843977440859
+        },
+        {
+          "tower_id": "J",
+          "rx_power": 27.94767003099657
+        },
+        {
+          "tower_id": "K",
+          "rx_power": 31.61417114075501
+        },
+        {
+          "tower_id": "L",
+          "rx_power": 32.276469100748386
+        },
+        {
+          "tower_id": "M",
+          "rx_power": 30.484155893237887
+        },
+        {
+          "tower_id": "N",
+          "rx_power": 21.781726108208872
+        },
+        {
+          "tower_id": "O",
+          "rx_power": 20.61659737900304
+        }
+      ]
+    }
+  ]
+}

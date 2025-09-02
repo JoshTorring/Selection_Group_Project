@@ -1,43 +1,49 @@
-import time, json, os, tempfile
-from api_client import get_all, APIError
 
+import time, json, os, requests
 TOWERS_URL  = "https://selection-drone.charginglead.workers.dev/towers"
 TARGETS_URL = "https://selection-drone.charginglead.workers.dev/target"
 STATUS_URL  = "https://selection-drone.charginglead.workers.dev/status"
 
-raw = os.getenv("API_TOKEN", "sait-selection-2025").strip()
-TOKEN = raw if raw.lower().startswith("bearer ") else f"Bearer {raw}"
+TOKEN = os.getenv("API_TOKEN", "Bearer sait-selection-2025")
 
-OUTPUT_JSON_PATH = "curl_positions.json"
+OUTPUT_JSON_PATH = "curl_snapshot.json"
 
 POLL_PERIOD_SEC = 2.0
 
-def write_snapshot(snapshot: dict, path: str):
-    """Atomically write snapshot dict to JSON file."""
-    dir_ = os.path.dirname(path) or "."
-    with tempfile.NamedTemporaryFile("w", delete=False, dir=dir_, encoding="utf-8") as tmp:
-        json.dump(snapshot, tmp, ensure_ascii=False, indent=2)
-        tmp_path = tmp.name
-    os.replace(tmp_path, path)
+
+def fetch(url: str, token: str | None = None) -> dict | list:
+    headers = {"Authorization": token} if token else {}
+    r = requests.get(url, headers=headers, timeout=8)
+    r.raise_for_status()
+    return r.json()
+
 
 def main():
-    print(f"Polling API every {POLL_PERIOD_SEC}s → writing {OUTPUT_JSON_PATH}")
-
+    print(f"Polling every {POLL_PERIOD_SEC}s → {OUTPUT_JSON_PATH}")
     while True:
         loop_start = time.time()
         try:
-            snapshot = get_all(TOWERS_URL, TARGETS_URL, STATUS_URL, token=TOKEN)
+            towers  = fetch(TOWERS_URL, TOKEN)
+            targets = fetch(TARGETS_URL, TOKEN)
+            status  = fetch(STATUS_URL, TOKEN)
 
-            snapshot["ts"] = time.time()
+            snapshot = {
+                "ts": time.time(),
+                "towers": towers,
+                "targets": targets,
+                "status": status,
+            }
 
-            write_snapshot(snapshot, OUTPUT_JSON_PATH)
+            with open(OUTPUT_JSON_PATH, "w", encoding="utf-8") as f:
+                json.dump(snapshot, f, ensure_ascii=False, indent=2)
 
-            print(f"[OK] snapshot written with {len(snapshot.get('status', {}).get('drones', []))} drones")
-        except APIError as e:
-            print("API failure:", e)
+            print(f"[OK] Snapshot written at {time.ctime()}")
+        except Exception as e:
+            print("[ERR]", e)
 
         elapsed = time.time() - loop_start
         time.sleep(max(0.0, POLL_PERIOD_SEC - elapsed))
+
 
 if __name__ == "__main__":
     main()
