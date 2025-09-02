@@ -5,13 +5,12 @@ TOWERS_URL  = "https://selection-drone.charginglead.workers.dev/towers"
 TARGETS_URL = "https://selection-drone.charginglead.workers.dev/target"
 STATUS_URL  = "https://selection-drone.charginglead.workers.dev/status"
 
-
-TOKEN = os.getenv("Sait-Selection-2025", None)  
+raw = os.getenv("API_TOKEN", "sait-selection-2025").strip()
+TOKEN = raw if raw.lower().startswith("bearer ") else f"Bearer {raw}"
 
 OUTPUT_JSON_PATH = "curl_positions.json"
 
 POLL_PERIOD_SEC = 2.0
-
 
 def write_snapshot(snapshot: dict, path: str):
     """Atomically write snapshot dict to JSON file."""
@@ -20,7 +19,6 @@ def write_snapshot(snapshot: dict, path: str):
         json.dump(snapshot, tmp, ensure_ascii=False, indent=2)
         tmp_path = tmp.name
     os.replace(tmp_path, path)
-
 
 def main():
     print(f"Polling API every {POLL_PERIOD_SEC}s → writing {OUTPUT_JSON_PATH}")
@@ -40,7 +38,6 @@ def main():
 
         elapsed = time.time() - loop_start
         time.sleep(max(0.0, POLL_PERIOD_SEC - elapsed))
-
 
 if __name__ == "__main__":
     main()

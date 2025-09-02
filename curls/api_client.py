@@ -9,14 +9,11 @@ class APIError(RuntimeError):
 def _headers(token: Optional[str]) -> Dict[str, str]:
     return {"Authorization": token} if token else {}
 
-def fetch_json(url: str, token: Optional[str] = None, timeout: float = DEFAULT_TIMEOUT) -> Dict[str, Any]:
+def fetch_json(url: str, token: Optional[str] = None, timeout: float = DEFAULT_TIMEOUT):
     try:
         resp = requests.get(url, headers=_headers(token), timeout=timeout)
         resp.raise_for_status()
-        data = resp.json()
-        if not isinstance(data, dict):
-            raise APIError(f"Expected JSON object at {url}, got {type(data).__name__}")
-        return data
+        return resp.json()  # may be dict OR list
     except requests.RequestException as e:
         raise APIError(f"HTTP error for {url}: {e}") from e
     except ValueError as e:
@@ -24,9 +21,26 @@ def fetch_json(url: str, token: Optional[str] = None, timeout: float = DEFAULT_T
 
 def get_towers(url: str, token: Optional[str] = None, timeout: float = DEFAULT_TIMEOUT) -> Dict[str, Any]:
     data = fetch_json(url, token, timeout)
-    if "towers" not in data:
-        raise APIError(f"'towers' key missing from {url}")
-    return data
+
+    if isinstance(data, dict) and "towers" in data:
+        return data
+
+    if isinstance(data, list):
+        towers_dict: Dict[str, Dict[str, float]] = {}
+        for i, t in enumerate(data):
+            if not isinstance(t, dict):
+                continue
+            tid = str(t.get("id") or t.get("tower_id") or t.get("name") or f"T{i}")
+            x = t.get("x", t.get("X", t.get("lon", t.get("lng"))))
+            y = t.get("y", t.get("Y", t.get("lat")))
+            pt = t.get("pt_db", t.get("tx_db", t.get("power", t.get("pt"))))
+            if x is not None and y is not None and pt is not None:
+                towers_dict[tid] = {"x": float(x), "y": float(y), "pt_db": float(pt)}
+        if not towers_dict:
+            raise APIError(f"Couldn't normalize towers list from {url}")
+        return {"towers": towers_dict}
+
+    raise APIError(f"Unexpected towers payload type from {url}: {type(data).__name__}")
 
 def get_targets(url: str, token: Optional[str] = None, timeout: float = DEFAULT_TIMEOUT) -> Dict[str, Any]:
     data = fetch_json(url, token, timeout)
