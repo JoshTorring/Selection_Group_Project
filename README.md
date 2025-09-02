@@ -76,11 +76,15 @@ Drones only report towers with receive powers above 10 dB
     { id: "N", position: { x: 60, y: 60 }, tx_power: 60 },
     { id: "O", position: { x: 90, y: 30 }, tx_power: 60 }
 
+i.e
+
+    curl --location --request GET 'https://selection-drone.charginglead.workers.dev/towers' --header 'Authorization: Bearer sait-selection-2025'
+
 ### /target -> returns the current target location
 
 i.e
 
-curl --location 'https://selection-drone.charginglead.workers.dev/target'
+curl --location 'https://selection-drone.charginglead.workers.dev/target' --header 'Authorization: Bearer sait-selection-2025' \
 
 response:
     
@@ -93,7 +97,7 @@ response:
 
   i.e
 
-  curl --location 'https://selection-drone.charginglead.workers.dev/status'
+  curl --location 'https://selection-drone.charginglead.workers.dev/status' --header 'Authorization: Bearer sait-selection-2025' \
 
   response:
 
@@ -117,14 +121,14 @@ response:
 
   i.e
   
-  curl --location --request GET 'https://selection-drone.charginglead.workers.dev/command' \
-  --header 'Content-Type: application/json' \
-  --data '{
-      "id": "drone-01",
-      "heading": 90,
-      "speed": 0.4
-  }'
-
+curl --location --request GET 'https://selection-drone.charginglead.workers.dev/status' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer sait-selection-2025' \
+--data '{
+    "id": "drone-01",
+    "heading": 90,
+    "speed": 0.05
+}'
   response:
 
   HTTP 200 "Command accepted"
@@ -133,7 +137,7 @@ response:
 
   i.e
 
-  curl --location 'https://selection-drone.charginglead.workers.dev/reset?drone_id=drone-01'
+  curl --location 'https://selection-drone.charginglead.workers.dev/reset?drone_id=drone-01' --header 'Authorization: Bearer sait-selection-2025' \
 
   response:
 
@@ -143,7 +147,7 @@ response:
 
   i.e:
 
-  curl --location 'https://selection-drone.charginglead.workers.dev/drop?drone_id=drone-01'
+  curl --location 'https://selection-drone.charginglead.workers.dev/drop?drone_id=drone-01' --header 'Authorization: Bearer sait-selection-2025' \
 
   response:
 
