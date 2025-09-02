@@ -4,6 +4,14 @@ import requests
 from curl_tracker import get_API
 from position_calculation import calculate_drone_position
 
+def math_to_compass(math_heading: float) -> float:
+    """
+    Convert math heading (0° = +x axis (east), CCW positive)
+    to compass heading (0° = north, CW positive).
+    """
+    compass = (90 - math_heading) % 360
+    return compass
+
 def calc_bearing(target_loc: dict, current_position: dict):
     """
     Takes in dictionaries for target location and current position, both
@@ -15,11 +23,9 @@ def calc_bearing(target_loc: dict, current_position: dict):
     delta_x = tx - dx
     delta_y = ty - dy
     distance = math.sqrt((delta_x **2) + (delta_y **2))
-    direction = math.degrees(math.atan2(delta_y, delta_x))
-    if direction < 0:
-        direction += 360
-
-    return(direction, distance)
+    math_heading = math.degrees(math.atan2(delta_y, delta_x))
+    compass_heading = math_to_compass(math_heading)
+    return compass_heading, distance
 # Main loop
 
 flying = True
@@ -35,12 +41,9 @@ while flying:
     direction, distance = calc_bearing(target_loc, position)
     print(f" direction, distance: {direction, distance}")
 
-    # Send command to drone using direction as heading
     drone_id = "drone-04"
-    direction  # already 0–360 with 0 = north
-    # simple speed logic: slow down when close
+ 
     speed = 1.0 if distance > 10 else 0.1
-
     cmd_payload = {
         "id": drone_id,
         "heading": direction,
