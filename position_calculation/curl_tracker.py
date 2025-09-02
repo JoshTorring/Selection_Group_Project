@@ -18,7 +18,7 @@ def fetch(url: str, token: str | None = None) -> dict | list:
     return r.json()
 
 
-def main():
+def get_API():
     print(f"Polling every {POLL_PERIOD_SEC}s → {OUTPUT_JSON_PATH}")
     while True:
         loop_start = time.time()
