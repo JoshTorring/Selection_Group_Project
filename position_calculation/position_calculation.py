@@ -339,7 +339,7 @@ def get_tower_pos(tower_id, data):
         if tower["id"] == tower_id:
             return tower["position"]
 
-def main(drone_status):
+def calculate_drone_position(drone_status):
     tower_data_formatted = {}
 
     for drone in drone_status:
@@ -389,7 +389,4 @@ def main(drone_status):
         "y": y
         }
 
-
-if __name__ == "__main__":
-    main(drone_status)
 

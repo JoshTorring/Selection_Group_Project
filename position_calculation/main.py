@@ -8,6 +8,7 @@ flying = True
 
 while flying:
   data = curl_tracker.get_API()
+  print(data)
   
   # get Data from api
 
