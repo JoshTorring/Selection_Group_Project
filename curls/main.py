@@ -1,3 +1,5 @@
+import math
+
 # Main loop
 
 flying = True
