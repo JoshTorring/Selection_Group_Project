@@ -1,4 +1,5 @@
 import math
+import json
 from curl_tracker import get_API
 from position_calculation import calculate_drone_position
 
@@ -7,8 +8,14 @@ from position_calculation import calculate_drone_position
 flying = True
 
 while flying:
-  data = curl_tracker.get_API()
-  print(data)
+  get_API()
+  with open('curl_snapshot.json') as f:
+    d = json.load(f)
+  print(d)
+  position = calculate_drone_position(d)
+  x, y = position["x"], position["y"]
+  print(x, y)
+  
   
   # get Data from api
 
