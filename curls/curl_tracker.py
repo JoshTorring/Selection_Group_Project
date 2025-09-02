@@ -6,7 +6,7 @@ TARGETS_URL = "https://selection-drone.charginglead.workers.dev/target"
 STATUS_URL  = "https://selection-drone.charginglead.workers.dev/status"
 
 
-TOKEN = os.getenv("API_TOKEN", None)  
+TOKEN = os.getenv("Sait-Selection-2025", None)  
 
 OUTPUT_JSON_PATH = "curl_positions.json"
 
