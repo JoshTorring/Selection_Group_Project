@@ -30,7 +30,11 @@ while flying:
 
     return(direction, distance)
 
+direction, distance = calc_bearing(target_loc, current_position)
   # decide if we need to drop the bomb
+if direction < 1:
+   # Drop the bomb!
+   pass
 
   # send commands to drone
-    # Either change geading or drop
+    # Either change heading or drop
