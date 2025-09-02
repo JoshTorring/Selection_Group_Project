@@ -1,13 +1,13 @@
 import math
-from curl_tracker import main
-from position_calculation import main
+from curl_tracker import get_API
+from position_calculation import calculate_drone_position
 
 # Main loop
 
 flying = True
 
 while flying:
-  data = curl_tracker.main()
+  data = curl_tracker.get_API()
   
   # get Data from api
 
